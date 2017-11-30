@@ -30,10 +30,14 @@ class Header extends React.Component {
 
 class Action extends React.Component {
 
+  handlePickOption() {
+    alert('randomly select option');
+  }
+
   render() {
     return (
       <div>
-        <button>What should I do?</button>
+        <button onClick={this.handlePickOption}>What should I do?</button>
       </div>
     );
   }
@@ -42,12 +46,20 @@ class Action extends React.Component {
 
 class Options extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.handleRemoveAll = this.handleRemoveAll.bind(this);
+  }
+
+  handleRemoveAll() {
+    console.log(this.props.options);
+  }
+
   render() {
     return (
       <div>
-        <ol>
-          {this.renderOptions(this.props.options)}
-        </ol>
+        <button onClick={this.handleRemoveAll}>Remove All</button>
+        {this.renderOptions(this.props.options)}
       </div>
     );
   }
@@ -65,17 +77,28 @@ class Option extends React.Component {
 
   render() {
     return (
-      <li>{this.props.option}</li>
+      <div>
+        {this.props.option}
+      </div>
     );
   }
 }
 
 class AddOption extends React.Component {
 
+  handleFormSubmit(e) {
+    e.preventDefault();
+    const option = e.target.elements.option.value.trim();
+    if (option) {
+      alert(option);
+      e.target.elements.option.value = '';
+    }
+  }
+
   render() {
     return (
       <div>
-        <form>
+        <form onSubmit={this.handleFormSubmit}>
           <input type="text" name="option" />
           <button>Add Option</button>
         </form>
