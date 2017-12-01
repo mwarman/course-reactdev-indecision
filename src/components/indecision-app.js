@@ -17,7 +17,6 @@ export default class IndecisionApp extends React.Component {
     };
   }
   componentDidMount() {
-    console.log('fetching data');
     try {
       const json = localStorage.getItem('options');
       const options = JSON.parse(json);
@@ -30,7 +29,6 @@ export default class IndecisionApp extends React.Component {
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.state.options.length !== prevState.options.length) {
-      console.log('saving data');
       const json = JSON.stringify(this.state.options);
       localStorage.setItem('options', json);
     }
