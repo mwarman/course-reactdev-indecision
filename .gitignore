@@ -58,4 +58,4 @@ typings/
 .env
 
 # generated files
-public/scripts/
+public/*.js
